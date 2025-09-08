@@ -1,0 +1,8 @@
+{
+  "buildCommand": "echo 'No build needed for static site'",
+  "outputDirectory": ".",
+  "devCommand": "serve .",
+  "installCommand": "npm install --only=dev",
+  "framework": null,
+  "public": false
+}
