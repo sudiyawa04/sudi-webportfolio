@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Image Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #1a1a2e;
+            color: white;
+            padding: 20px;
+        }
+        .image-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        canvas {
+            border: 2px solid #00d4ff;
+            border-radius: 12px;
+            margin: 10px;
+        }
+        .instructions {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #00d4ff;
+            margin-bottom: 15px;
+        }
+        .download-btn {
+            background: linear-gradient(135deg, #00d4ff 0%, #7209b7 100%);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 10px;
+            text-decoration: none;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="instructions">
+        <h2>Project Images Generator</h2>
+        <p>Click the "Download" button below each image to save them to your assets/images folder.</p>
+        <p>These images are optimized for your portfolio layout (800x500px).</p>
+    </div>
+
+    <div class="image-container">
+        <h3>Barista Coffee Website</h3>
+        <canvas id="baristaCanvas" width="800" height="500"></canvas>
+        <br>
+        <a href="#" id="baristaDownload" class="download-btn">Download barista-project.jpg</a>
+    </div>
+
+    <div class="image-container">
+        <h3>SmartQuee Management System</h3>
+        <canvas id="smartqueeCanvas" width="800" height="500"></canvas>
+        <br>
+        <a href="#" id="smartqueeDownload" class="download-btn">Download smartquee-project.jpg</a>
+    </div>
+
+    <div class="image-container">
+        <h3>Budget Tracker App</h3>
+        <canvas id="budgetCanvas" width="800" height="500"></canvas>
+        <br>
+        <a href="#" id="budgetDownload" class="download-btn">Download budget-tracker-project.jpg</a>
+    </div>
+
+    <script>
+        // Barista Coffee Website Image
+        function createBaristaImage() {
+            const canvas = document.getElementById('baristaCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Background gradient (coffee shop theme)
+            const gradient = ctx.createLinearGradient(0, 0, 800, 500);
+            gradient.addColorStop(0, '#2D1B14');
+            gradient.addColorStop(0.5, '#4A2C1A');
+            gradient.addColorStop(1, '#6B3E1A');
+            
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 800, 500);
+            
+            // Coffee cup icon background
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+            ctx.fillRect(50, 50, 700, 400);
+            
+            // Coffee cup shape
+            ctx.fillStyle = '#8B4513';
+            ctx.fillRect(300, 150, 200, 180);
+            ctx.fillRect(320, 130, 160, 20);
+            
+            // Coffee cup handle
+            ctx.strokeStyle = '#8B4513';
+            ctx.lineWidth = 15;
+            ctx.beginPath();
+            ctx.arc(520, 200, 40, -Math.PI/2, Math.PI/2);
+            ctx.stroke();
+            
+            // Steam lines
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.6)';
+            ctx.lineWidth = 3;
+            for(let i = 0; i < 3; i++) {
+                ctx.beginPath();
+                ctx.moveTo(360 + i * 30, 120);
+                ctx.quadraticCurveTo(370 + i * 30, 100, 365 + i * 30, 80);
+                ctx.stroke();
+            }
+            
+            // Title
+            ctx.fillStyle = '#F5E6D3';
+            ctx.font = 'bold 48px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('BARISTA', 400, 380);
+            
+            ctx.font = '24px Arial';
+            ctx.fillText('Coffee Shop Website', 400, 420);
+            
+            // Tech stack
+            ctx.font = '16px Arial';
+            ctx.fillStyle = '#00d4ff';
+            ctx.fillText('HTML • CSS • JavaScript • Bootstrap • PHP', 400, 460);
+        }
+        
+        // SmartQuee System Image
+        function createSmartqueeImage() {
+            const canvas = document.getElementById('smartqueeCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Background gradient (tech theme)
+            const gradient = ctx.createLinearGradient(0, 0, 800, 500);
+            gradient.addColorStop(0, '#1e3c72');
+            gradient.addColorStop(1, '#2a5298');
+            
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 800, 500);
+            
+            // Queue visualization background
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+            ctx.fillRect(50, 50, 700, 400);
+            
+            // Queue boxes
+            const queueColors = ['#00d4ff', '#ff6b35', '#7209b7', '#00d4ff', '#ff6b35'];
+            for(let i = 0; i < 5; i++) {
+                ctx.fillStyle = queueColors[i];
+                ctx.fillRect(120 + i * 110, 180, 80, 80);
+                
+                // Queue numbers
+                ctx.fillStyle = 'white';
+                ctx.font = 'bold 24px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText((i + 1).toString(), 160 + i * 110, 230);
+            }
+            
+            // Arrows between boxes
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = 3;
+            for(let i = 0; i < 4; i++) {
+                ctx.beginPath();
+                ctx.moveTo(210 + i * 110, 220);
+                ctx.lineTo(250 + i * 110, 220);
+                ctx.stroke();
+                
+                // Arrow head
+                ctx.beginPath();
+                ctx.moveTo(245 + i * 110, 215);
+                ctx.lineTo(250 + i * 110, 220);
+                ctx.lineTo(245 + i * 110, 225);
+                ctx.stroke();
+            }
+            
+            // Title
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 48px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('SMARTQUEE', 400, 140);
+            
+            ctx.font = '24px Arial';
+            ctx.fillText('Queue Management System', 400, 320);
+            
+            // Tech stack
+            ctx.font = '16px Arial';
+            ctx.fillStyle = '#00d4ff';
+            ctx.fillText('React • Node.js • JavaScript • HTML • CSS', 400, 380);
+        }
+        
+        // Budget Tracker App Image
+        function createBudgetImage() {
+            const canvas = document.getElementById('budgetCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Background gradient (financial theme)
+            const gradient = ctx.createLinearGradient(0, 0, 800, 500);
+            gradient.addColorStop(0, '#134e5e');
+            gradient.addColorStop(1, '#71b280');
+            
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 800, 500);
+            
+            // Phone mockup
+            ctx.fillStyle = '#2d2d2d';
+            ctx.fillRect(300, 80, 200, 340);
+            ctx.fillRect(310, 90, 180, 320);
+            
+            // Screen content
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(320, 100, 160, 300);
+            
+            // Chart bars
+            const barHeights = [60, 80, 45, 90, 70];
+            const barColors = ['#00d4ff', '#ff6b35', '#7209b7', '#00d4ff', '#ff6b35'];
+            
+            for(let i = 0; i < 5; i++) {
+                ctx.fillStyle = barColors[i];
+                ctx.fillRect(330 + i * 24, 280 - barHeights[i], 20, barHeights[i]);
+            }
+            
+            // Dollar sign
+            ctx.fillStyle = '#2d2d2d';
+            ctx.font = 'bold 40px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('$', 400, 150);
+            
+            // Balance
+            ctx.font = 'bold 20px Arial';
+            ctx.fillText('2,450.00', 400, 180);
+            
+            // Title
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 48px Arial';
+            ctx.fillText('BUDGET TRACKER', 400, 60);
+            
+            ctx.font = '24px Arial';
+            ctx.fillText('Personal Finance App', 400, 450);
+            
+            // Tech stack
+            ctx.font = '16px Arial';
+            ctx.fillStyle = '#00d4ff';
+            ctx.fillText('Java • Kotlin • Android', 400, 480);
+        }
+        
+        // Generate all images
+        createBaristaImage();
+        createSmartqueeImage();
+        createBudgetImage();
+        
+        // Download functionality
+        function setupDownload(canvasId, filename, downloadId) {
+            const canvas = document.getElementById(canvasId);
+            const downloadLink = document.getElementById(downloadId);
+            
+            downloadLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                canvas.toBlob(function(blob) {
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = filename;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                });
+            });
+        }
+        
+        setupDownload('baristaCanvas', 'barista-project.jpg', 'baristaDownload');
+        setupDownload('smartqueeCanvas', 'smartquee-project.jpg', 'smartqueeDownload');
+        setupDownload('budgetCanvas', 'budget-tracker-project.jpg', 'budgetDownload');
+    </script>
+</body>
+</html>
